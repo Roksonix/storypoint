@@ -37,10 +37,4 @@ const mapStateToProps = state => ({
     username: state.username
 });
 
-const mapDispatchToProps = dispatch => ({
-    sendMessage({ messageText, username }) {
-        dispatch(sendMessage({ messageText, username }));
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(VoterView);
+export default connect(mapStateToProps, { sendMessage })(VoterView);
