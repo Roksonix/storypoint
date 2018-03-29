@@ -67,10 +67,10 @@ class SelectView extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    createRoom: ({ roomId, username }) => {
+    createRoom({ roomId, username }) {
         dispatch(createRoom({ roomId, username }));
     },
-    joinRoom: ({ roomId, username }) => {
+    joinRoom({ roomId, username }) {
         dispatch(joinRoom({ roomId, username }));
     }
 });

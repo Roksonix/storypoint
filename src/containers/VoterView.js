@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendMessage: ({ messageText, username }) => {
+    sendMessage({ messageText, username }) {
         dispatch(sendMessage({ messageText, username }));
     }
 });
