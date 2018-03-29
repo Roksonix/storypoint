@@ -1,0 +1,27 @@
+.SendMessage {
+    display: flex;
+    flex-direction: column;
+}
+
+.SendMessage-area {
+    min-width: 30em;
+    min-height: 15em;
+    margin-bottom: 2em;
+}
+
+.SendMessage-submit {
+    padding: .8em;
+    color: white;
+    font-size: .9em;
+    border: 2px solid white;
+    background: none;
+    cursor: pointer;
+    transition: .4s ease;
+    transition-property: color, background-color;
+}
+    
+.SendMessage-submit:hover {
+    background: white;
+    color: #d1913c;
+}
+    

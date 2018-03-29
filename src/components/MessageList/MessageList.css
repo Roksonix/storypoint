@@ -1,0 +1,5 @@
+.MessageList {
+    list-style: none;
+    padding: 0;
+    min-width: 30em;
+}

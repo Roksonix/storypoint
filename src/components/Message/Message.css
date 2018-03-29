@@ -1,0 +1,11 @@
+.Message {
+    margin: 1em;
+    padding: 1em;
+    background: white;
+    border-radius: 2em;
+}
+
+.Message-author {
+    margin-right: 1em;
+    color: #d1913c;
+}

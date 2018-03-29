@@ -1,0 +1,13 @@
+.Header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 5em;
+    background-color: white;
+}
+
+.Header-title {
+    color: #d1913c;
+    letter-spacing: .1em;
+}
