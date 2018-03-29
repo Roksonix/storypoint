@@ -19,7 +19,7 @@ class VoterView extends React.Component {
         if (!this.state.messageText.trim()) {
             return;
         }
-        this.props.dispatch(sendMessage(this.state));
+        this.props.sendMessage(this.state);
     }
 
     updateMessage(event) {
@@ -37,4 +37,10 @@ const mapStateToProps = state => ({
     username: state.username
 });
 
-export default connect(mapStateToProps)(VoterView);
+const mapDispatchToProps = dispatch => ({
+    sendMessage: ({ messageText, username }) => {
+        dispatch(sendMessage({ messageText, username }));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VoterView);

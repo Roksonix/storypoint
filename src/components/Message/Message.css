@@ -1,11 +1,12 @@
 .Message {
     margin: 1em;
-    padding: 1em;
+    padding: 1em 2em;
     background: white;
     border-radius: 2em;
 }
 
 .Message-author {
+    display: block;
     margin-right: 1em;
     color: #d1913c;
 }

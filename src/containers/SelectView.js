@@ -21,12 +21,12 @@ class SelectView extends React.Component {
 
     createRoom() {
         this.props.history.push(`/admin/${this.state.roomId}`);
-        this.props.dispatch(createRoom(this.state));
+        this.props.createRoom(this.state);
     }
 
     joinRoom() {
         this.props.history.push(`/room/${this.state.roomId}`);
-        this.props.dispatch(joinRoom(this.state));
+        this.props.joinRoom(this.state);
     }
 
     onSubmit(event) {
@@ -66,4 +66,13 @@ class SelectView extends React.Component {
     }
 }
 
-export default connect()(withRouter(SelectView));
+const mapDispatchToProps = dispatch => ({
+    createRoom: ({ roomId, username }) => {
+        dispatch(createRoom({ roomId, username }));
+    },
+    joinRoom: ({ roomId, username }) => {
+        dispatch(joinRoom({ roomId, username }));
+    }
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(SelectView));
