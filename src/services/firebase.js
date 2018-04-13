@@ -25,7 +25,29 @@ export const auth = {
 
 export const database = {
     _instance: _database,
-    createRoom: async ({ roomId, uid }) => {
+    getRoomMessagesRef: roomId => {
+        return _database.ref(`rooms/${roomId}/messages`);
+    },
+    getUsersRef: () => {
+        return _database.ref('users');
+    },
+    createUser: async ({ uid, username }) => {
+        const ref = _database.ref('users');
+
+        await ref.once('value').then(snapshot => {
+            if (!snapshot.exists) {
+                ref.set({
+                    [uid]: username
+                });
+                return;
+            }
+            ref.set({
+                ...snapshot.val(),
+                [uid]: username
+            });
+        });
+    },
+    createRoom: async ({ roomId, uid, switchViewToAdmin }) => {
         const ref = _database.ref(`rooms/${roomId}`);
 
         await ref.once('value').then(snapshot => {
@@ -36,15 +58,49 @@ export const database = {
             ref.set({
                 creatorId: uid
             });
+
+            switchViewToAdmin();
         })
     },
-    sendMessage: async (message) => {
-        const ref = _database.ref('messages');
-        const key = ref.push().key;
-        const updates = {
-            ['messages/' + key]: message
-        };
+    joinRoom: async ({ roomId, uid, switchViewToRoom }) => {
+        const ref = _database.ref(`rooms/${roomId}`);
 
-        return ref.update(updates);
+        switchViewToRoom();
+
+        await ref.once('value').then(snapshot => {
+            if (!snapshot.exists()) {
+                throw new Error('This room isn`t existing yet');
+            }
+
+            const usersRef = ref.child('users');
+            const usersSnapshot = snapshot.child('users');
+            const userList = usersSnapshot.val();
+
+            if (!usersSnapshot.exists()) {
+                usersRef.set([ uid ]);
+                return;
+            }
+
+            if (userList.indexOf(uid) > -1) {
+                return;
+            }
+
+            usersRef.set([...userList, uid]);
+        });
+    },
+    sendMessage: async ({ messageText, roomId, uid }) => {
+        const ref = _database.ref(`rooms/${roomId}`);
+        const message = { author: uid, text: messageText };
+
+        await ref.once('value').then(snapshot => {
+            const messages = ref.child('messages');
+
+            if (!snapshot.child('messages').exists()) {
+                messages.set([ message ]);
+                return;
+            }
+
+            messages.set([ ...snapshot.child('messages').val(), message]);
+        });
     }
 };

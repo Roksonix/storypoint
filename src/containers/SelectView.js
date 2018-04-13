@@ -20,13 +20,11 @@ class SelectView extends React.Component {
     }
 
     createRoom() {
-        this.props.history.push(`/admin/${this.state.roomId}`);
-        this.props.createRoom(this.state);
+        this.props.createRoom(this.state, this.props.history);
     }
 
     joinRoom() {
-        this.props.history.push(`/room/${this.state.roomId}`);
-        this.props.joinRoom(this.state);
+        this.props.joinRoom(this.state, this.props.history);
     }
 
     onSubmit(event) {

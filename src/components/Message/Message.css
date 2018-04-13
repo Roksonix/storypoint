@@ -7,6 +7,6 @@
 
 .Message-author {
     display: block;
-    margin-right: 1em;
+    margin: 0 1em .5em 0;
     color: #d1913c;
 }

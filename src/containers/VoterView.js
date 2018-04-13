@@ -6,10 +6,7 @@ import { sendMessage } from 'actions';
 class VoterView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            username: this.props.username,
-            messageText: ''
-        };
+        this.state = { messageText: '' };
         this.onSubmit = this.onSubmit.bind(this);
         this.updateMessage = this.updateMessage.bind(this);
     }
@@ -33,8 +30,4 @@ class VoterView extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    username: state.username
-});
-
-export default connect(mapStateToProps, { sendMessage })(VoterView);
+export default connect(null, { sendMessage })(VoterView);

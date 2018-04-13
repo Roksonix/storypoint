@@ -4,7 +4,7 @@ import './MessageList.css';
 
 const MessageList = ({ messages }) => (
     <ul className="MessageList">
-        {messages.map((message, index) => (<Message {...message} key={index}/>))}
+        {messages && messages.map((message, index) => (<Message {...message} key={index}/>))}
     </ul>
 );
 
