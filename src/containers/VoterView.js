@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SendMessage from '../components/SendMessage';
-import { sendMessage } from '../actions';
+import SendMessage from 'components/SendMessage';
+import { sendMessage } from 'actions';
 
 class VoterView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            author: this.props.username,
+            username: this.props.username,
             messageText: ''
         };
         this.onSubmit = this.onSubmit.bind(this);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MessageList from '../components/MessageList';
+import MessageList from 'components/MessageList';
 
 class AdminView extends React.Component {
     render() {

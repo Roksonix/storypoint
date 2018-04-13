@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import SelectScreen from '../components/SelectScreen';
-import { joinRoom, createRoom, JOIN_ROOM, CREATE_ROOM } from '../actions';
+import SelectScreen from 'components/SelectScreen';
+import { joinRoom, createRoom, JOIN_ROOM, CREATE_ROOM } from 'actions';
 
 class SelectView extends React.Component {
     constructor(props) {

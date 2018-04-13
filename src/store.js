@@ -1,15 +1,9 @@
-import { createStore } from 'redux';
-import reducers from './reducers';
-import { loadState, saveState } from './services/localstorage';
-import throttle from 'lodash/throttle';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducers from 'reducers';
 
 const configureStore = () => {
-    const persistedState = loadState();
-    const store = createStore(reducers, persistedState);
-
-    store.subscribe(throttle(() => {
-        saveState(store.getState());
-    }), 1000);
+    const store = createStore(reducers, applyMiddleware(thunk));
 
     return store;
 };

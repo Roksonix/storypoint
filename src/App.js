@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from './components/Header';
-import CenteredBlock from './components/CenteredBlock';
-import SelectView from './containers/SelectView';
-import VoterView from './containers/VoterView';
-import AdminView from './containers/AdminView';
+import Header from 'components/Header';
+import CenteredBlock from 'components/CenteredBlock';
+import SelectView from 'containers/SelectView';
+import VoterView from 'containers/VoterView';
+import AdminView from 'containers/AdminView';
 
 const App = () => (
     <div>

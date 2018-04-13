@@ -1,5 +1,5 @@
 import React from 'react';
-import { CREATE_ROOM, JOIN_ROOM } from '../../actions';
+import { CREATE_ROOM, JOIN_ROOM } from 'actions';
 import './SelectScreen.css';
 
 const SelectScreen = ({ constraint, updateUsername, updateRoomId, updateType, onSubmit }) => (

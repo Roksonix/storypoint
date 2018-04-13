@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from '../Message';
+import Message from 'components/Message';
 import './MessageList.css';
 
 const MessageList = ({ messages }) => (

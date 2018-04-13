@@ -1,4 +1,4 @@
-import { JOIN_ROOM } from '../actions';
+import { JOIN_ROOM, CREATE_ROOM } from 'actions';
 
 const initialState = {
     messages: [
@@ -12,7 +12,14 @@ function reducer(state = initialState, action) {
         case JOIN_ROOM:
             return Object.assign({}, state, {
                 roomId: action.roomId,
-                username: action.username
+                username: action.username,
+                uid: action.uid
+            });
+        case CREATE_ROOM:
+            return Object.assign({}, state, {
+                roomId: action.roomId,
+                username: action.username,
+                uid: action.uid
             });
         default:
             return state;
