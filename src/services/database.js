@@ -44,7 +44,7 @@ async function joinRoom({ roomId, uid }, callback) {
 
         const usersRef = ref.child('users');
         const usersSnapshot = snapshot.child('users');
-        const userList = usersSnapshot.val();
+        const userList = usersSnapshot.val() || [];
 
         if (userList.indexOf(uid) > -1) {
             return roomId;
@@ -81,7 +81,7 @@ function unlistenRoom(roomId) {
 }
 
 function listenRoom(roomId, handler) {
-    service.database().ref(`rooms/${roomId}/messages`).on('value').then(handler).catch(console.error);
+    service.database().ref(`rooms/${roomId}/messages`).on('value', handler);
 }
 
 function updateMessagesWithUsernames(messages, callback) {
