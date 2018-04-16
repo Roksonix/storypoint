@@ -1,4 +1,5 @@
-import { auth, database } from 'services/firebase'; 
+import { auth } from 'services/auth';
+import { database } from 'services/database';
 
 export const JOIN_ROOM = 'JOIN_ROOM';
 export const CREATE_ROOM = 'CREATE_ROOM';
@@ -13,7 +14,7 @@ export const joinRoom = ({ roomId, username }, history) => async (dispatch, getS
             uid: user.uid
         });
         database.createUser({ username, uid: user.uid });
-        database.joinRoom({ roomId, uid: user.uid, switchViewToRoom: () => { history.push(`/room/${roomId}`); } });
+        database.joinRoom({ roomId, uid: user.uid }, () => { history.push(`/room/${roomId}`); });
     });
 };
 
@@ -26,7 +27,7 @@ export const createRoom = ({ roomId, username }, history) => async (dispatch, ge
             uid: user.uid
         });
         database.createUser({ username, uid: user.uid });
-        database.createRoom({ roomId, uid: user.uid, switchViewToAdmin: () => { history.push(`/admin/${roomId}`); } });
+        database.createRoom({ roomId, uid: user.uid }, () => { history.push(`/admin/${roomId}`) });
     });
 };
 

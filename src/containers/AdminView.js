@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MessageList from 'components/MessageList';
-import { database } from 'services/firebase';
+import { database } from 'services/database';
 
 class AdminView extends React.Component {
     constructor(props) {
@@ -12,27 +12,17 @@ class AdminView extends React.Component {
     }
 
     componentDidMount() {
-        database.getRoomMessagesRef(this.props.roomId).on('value', this.updateMessageList.bind(this));
+        database.listenRoom(this.props.roomId, this.updateMessageList.bind(this));
     }
 
     componentWillUnmount() {
-        database.getRoomMessagesRef(this.props.roomId).off('value');
+        database.unlistenRoom(this.props.roomId);
     }
 
     updateMessageList(snapshot) {
         const messages = snapshot.val() || [];
 
-        database.getUsersRef().once('value').then(snapshot => {
-            const usersMap = snapshot.val();
-
-            messages.map(message => {
-                message.author = usersMap[message.author];
-
-                return message;
-            });
-
-            this.setState({ messages });
-        });
+        database.updateMessagesWithUsernames(messages, messages => { this.setState({ messages }); });
     }
 
     render() {

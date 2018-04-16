@@ -1,13 +1,6 @@
 import { JOIN_ROOM, CREATE_ROOM } from 'actions';
 
-const initialState = {
-    messages: [
-        { author: 'Test', text: 'I am a message' },
-        { author: 'Not Test', text: 'And I`m too!' }
-    ]
-};
-
-function reducer(state = initialState, action) {
+function reducer(state = {}, action) {
     switch(action.type) {
         case JOIN_ROOM:
             return Object.assign({}, state, {
