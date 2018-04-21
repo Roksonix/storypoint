@@ -14,7 +14,7 @@
     "redux": "^3.7.2"
   },
   "scripts": {
-    "start": "npm run build && node server.js",
+    "start": "npm i && npm run build && node server.js",
     "start:r": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
