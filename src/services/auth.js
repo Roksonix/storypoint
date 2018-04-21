@@ -6,6 +6,11 @@ function createUser(callback) {
         .catch(console.error);
 }
 
+function currentUser() {
+    return service.auth().currentUser;
+}
+
 export const auth = {
-    createUser
+    createUser,
+    currentUser
 };

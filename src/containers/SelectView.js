@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SelectScreen from 'components/SelectScreen';
 import { joinRoom, createRoom, JOIN_ROOM, CREATE_ROOM } from 'actions';
+import { auth } from 'services/auth';
 
 class SelectView extends React.Component {
     constructor(props) {
@@ -17,6 +18,8 @@ class SelectView extends React.Component {
         this.updateUsername = this.updateUsername.bind(this);
         this.updateRoomId = this.updateRoomId.bind(this);
         this.updateType = this.updateType.bind(this);
+
+        auth.createUser();
     }
 
     createRoom() {
